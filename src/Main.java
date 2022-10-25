@@ -1,14 +1,43 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int num1 = getInt();
-        int num2 = getInt();
-        char operation = getOperation();
-        int result = calc(num1, num2, operation);
-        System.out.println("Wynik operacji: " + result);
+        int i;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Wpisz Operacje: Kalkulator=1 SortowanieBąbelkowe=2 ObliczeniePolaKoła=3 ");
+        i = input.nextInt();
+
+        if (i == 1) {
+            int num1 = getInt();
+            int num2 = getInt();
+            char operation = getOperation();
+            int result = calc(num1, num2, operation);
+            System.out.println("Wynik operacji: " + result);
+        }
+        else if (i == 2)
+        {
+            int counter, num, array[];
+            System.out.println("Wpisz ilość elementów do sortowania: ");
+            num = input.nextInt();
+            array = new int[num];
+            System.out.println("Wpisz " + num + " liczb");
+            for (counter = 0; counter < num; counter++) {
+                array[counter] = input.nextInt();
+            }
+            System.out.println("liczby przed sortowaniemBąbelkowym : " + Arrays.toString(array));
+            bubbleSort(array);
+            System.out.println("liczby po sortowaniuBąbelkowym : " + Arrays.toString(array));
+        }
+        else if (i == 3){
+            System.out.print("Wpisz promień koła: ");
+            int promien = input.nextInt();
+            long area = Math.round(Math.PI * Math.pow(promien, 2));
+            System.out.printf("Pole okręgu równa się= ", area);
+        }
+
     }
 
     public static int getInt() {
@@ -58,4 +87,26 @@ public class Main {
         }
         return result;
     }
+
+
+
+    public static void bubbleSort(int[] num) {
+        int j;
+        boolean flag = true;
+        int temp;
+
+        while (flag) {
+            flag = false;
+            for (j = 0; j < num.length - 1; j++) {
+                if (num[j] < num[j + 1]) {
+                    temp = num[j];
+                    num[j] = num[j + 1];
+                    num[j + 1] = temp;
+                    flag = true;
+                }
+            }
+        }
+    }
 }
+
+
